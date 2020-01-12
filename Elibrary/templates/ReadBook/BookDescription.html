@@ -1,0 +1,14 @@
+{% extends 'Base/Header.html' %} {% block content %} {% if book == None %}
+<h1>Book Not Found</h1>
+{% else %}
+<ul>
+  <li>id: {{book.id}}</li>
+  <li>book name: {{book.book_name}}</li>
+  <li>uploaded by: {{book.uploaded_by}}</li>
+  <li>book price: {{book.book_price}}</li>
+  <li>book type: {{book.book_type}}</li>
+  <li>book discount: {{book.book_discount}}</li>
+  <li>book description: {{book.book_description}}</li>
+  <li>book category: {{book_category}}</li>
+</ul>
+{% endif %} {% endblock %}
