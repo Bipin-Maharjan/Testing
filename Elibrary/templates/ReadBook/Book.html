@@ -1,0 +1,44 @@
+{% extends 'Base/Header.html' %} {% block content %}
+<div class="row">
+  {% if not books %}
+  <h1>No books to display</h1>
+  {% else %} {% for book in books %}
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://materializecss.com/images/sample-1.jpg" />
+        <div>
+          <a href="{% url 'description' book.id %}">
+            <span class="card-title">{{book.book_name|title}}</span>
+          </a>
+        </div>
+      </div>
+      <div class="card-content" style="height:140px; overflow: hidden;">
+        <p style="text-align:justify">
+          {{book.book_description}}
+        </p>
+      </div>
+      <div class="card-action" style="display: flex;align-items: baseline;">
+        <div>
+          <span style="font-size: 17px;">
+            Rating: 4.5
+          </span>
+          <i class="material-icons" style="vertical-align: text-bottom;">
+            star_half
+          </i>
+          <!-- new indication for new books -->
+          <!-- <span style="color:#ec1e24">
+            <sup style="vertical-align: text-top;">New</sup>
+          </span> -->
+        </div>
+        <div style="margin-left: auto;">
+          <a href="#" class="btn">
+            {{ book.book_price|yesno:'$,Free' }} {% firstof book.book_price %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% endif %}
+</div>
+{% endblock %}

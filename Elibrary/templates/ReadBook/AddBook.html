@@ -1,0 +1,115 @@
+{% extends 'Base/Header.html' %} {% block content %}
+<div class="row">
+  <h3 align="center">Add Book</h3>
+  {% if error %}
+  <p align="center" style="color:red;">{{error}}</p>
+  {% endif %}
+  <div style="display:flex; justify-content: center; align-items: center;">
+    <div class="col s8" style="margin-left: unset;">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-field">
+          <label for="bookname">Book Name *</label>
+          <input
+            type="text"
+            name="name"
+            id="bookname"
+            class="validate"
+            required
+          />
+        </div>
+        <div>
+          <label for="booktype" class="fs15">Book Type: *</label>
+          <select name="type" id="booktype" style="display: block;" required>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="Premium">Premium</option>
+            <option value="Free">Free</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <label for="bookprice">Book Price</label>
+          <input type="Number" name="price" id="bookprice" class="validate" />
+        </div>
+        <div class="input-field">
+          <label for="category">Book Category *</label>
+          <input
+            type="text"
+            name="category"
+            id="category"
+            class="validate"
+            required
+          />
+        </div>
+        <div>
+          <label for="bookimage" class="fs15">Book Cover:</label><br />
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Upload</span>
+              <input type="file" name="image" accept="image/*" />
+            </div>
+            <div class="file-path-wrapper">
+              <input
+                class="file-path validate"
+                type="text"
+                placeholder="Upload Book Cover"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="bookfile" class="fs15">Book File: *</label><br />
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Upload</span>
+              <input
+                type="file"
+                name="file"
+                accept="application/pdf"
+                required
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input
+                class="file-path validate"
+                type="text"
+                placeholder="Upload Book .pdf File"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="bookdescription" class="fs15">Abstract of Book: *</label>
+          <textarea
+            name="description"
+            id="bookdescription"
+            style="height: 8rem;resize: none; border:solid 0.5px #9e9e9e; margin-top:5px"
+            placeholder="Description"
+            required
+          ></textarea>
+        </div>
+        <div class="input-field">
+          <button
+            type="submit"
+            class="btn waves-effect waves-light"
+            style="width:100%;"
+          >
+            Add Book
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $("#booktype").change(function() {
+      let value = $("#booktype option:selected").val();
+      if (value == "Free") {
+        $("#bookprice").attr("disabled", "disabled");
+      } else {
+        $("#bookprice").removeAttr("disabled");
+      }
+    });
+  });
+</script>
+{% endblock %}
