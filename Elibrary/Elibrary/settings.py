@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #Add installed apps here
     'ReadBook',
+	'Accounts',
 ]
 
 MIDDLEWARE = [

@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     #add include to your apps url.py
-    path('',include(ReadBook.urls)),
+    path('',include('ReadBook.urls')),
+	path('',include('Accounts.urls')),
 ]
